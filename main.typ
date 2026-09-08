@@ -34,35 +34,38 @@
 
 #section("Education")
 
-#entry[*University of California, Berkeley* | B.S. Electrical Engineering & Computer Sciences][Expected May 2030]
+#entry[*University of California, Berkeley* | B.S. Electrical Engineering & Computer Sciences][Class of 2030]
 - Current Coursework: Data Structures, Linear Algebra & Differential Equations
 
-#entry[*Stratford Preparatory Blackford* | High School Diploma][June 2026]
-- GPA: 4.87
-- Relevant Coursework: AP Computer Science A, AP Calculus BC, AP Statistics, Cybersecurity, Full-Stack Development
+#entry[*Stratford Preparatory Blackford* | High School Diploma (GPA: 4.87)][June 2026]
+- Relevant Coursework: AP Computer Science A, AP Calculus BC, AP Statistics, Cybersecurity, Full-Stack Development, AI: Models and Applications, Data Structures and Algorithms
 
 #section("Projects")
 
 #entry[*ClashAI* #link("https://github.com/regarager/clash-ai")[(code)] #tag[(Reinforcement Learning + Computer Vision)]][Fall 2025 – Spring 2026]
-- Built an autonomous reinforcement learning agent to play the mobile game Clash Royale using PPO (actor-critic with multi-head attention) and action masking for legal move selection
-- Implemented unit detection with YOLOv11 and dHash-based card recognition using Sobel edge detection, Otsu thresholding, and jitter-robust matching
-- Reduced screen-capture latency from ≈200 ms to ≈30 ms by integrating minicap over ADB, enabling real-time perception–decision loops
+- Investigated real-time perception–action bottlenecks in game-playing RL agents; benchmarked ADB versus minicap screen-capture frameworks, reducing end-to-end latency from $approx 200$ ms to $approx 30$ ms while preserving YOLOv11 detection integrity
+- Implemented PPO with multi-head attention and action masking for legal move selection; engineered jitter-robust card recognition via dHash matching with Sobel edge detection and Otsu thresholding
+- Conducted ablation studies on latency-vs-accuracy trade-offs, identifying the capture pipeline as the primary bottleneck for real-time decision loops
 
-#entry[*IntBee* #link("https://github.com/regarager/intbee")[(code)] #tag[(Full-Stack + Web Security)]][Fall 2025 – Spring 2026]
-- Built a full-stack TypeScript web application for real-time 1v1 integration contests
-- Implemented real-time gameplay over WebSockets: matchmaking queue, timed rounds, and live bidirectional game-state sync between players
-- Designed JWT authentication with Argon2 password hashing and role-based access control
-- Developed competition tooling: paginated problem bank with LaTeX rendering, live leaderboard with configurable score curves and JSON export, and tag-based markdown wiki
+#entry[*MaLO* | Contributor #tag[(LLMs in Cybersecurity)]][Summer 2025]
+- Integrated the OpenRouter API to enable benchmarking across multiple LLM models; controlled system prompt, temperature, and other key hyperparameters across models
+- Enforced reproducibility across different models using Docker and standardized challenge files
+- Created pipeline to run all tests automatically, removing manual per-run intervention and speeding up tests
 
-#entry[*MaLO* | Contributor #tag[(Multi-Agent Cybersecurity LLM Framework)]][Summer 2025]
-- Integrated the OpenRouter API to enable benchmarking across multiple LLM models
-- Implemented style-guide enforcement and automated checks on publishing changes, improving codebase reliability
-- Accelerated benchmarking by automating test environments with Docker images
+#entry[*Analysis of California Traffic Collisions* #tag[(Data Science + Forecasting)]][Summer 2024]
+- Engineered multi-class classification and time-series forecasting pipelines on 5M+ California Highway Patrol collision records to identify environmental, temporal, and vehicular risk factors
+- Designed a custom "lenient accuracy" metric to handle near-correct classifications; benchmarked Logistic Regression, SVM, and Random Forest
+- Built a time-series forecasting model using skforecast with lag optimization; formulated a causal hypothesis on Daylight Saving Time (DST) shifts, classifying post-DST periods vs. normal days with 71.4% accuracy
 
-#entry[*Analysis of California Traffic Collisions* #tag[(Data Science + Predictive Modeling)]][Summer 2024]
-- Conducted end-to-end analysis of 5M+ collision records: data cleaning, EDA, feature engineering, and model deployment
-- Trained and tuned random forest and logistic regression models to identify key factors of collision severity
-- Developed data-driven policy recommendations with supporting visualizations for roadway safety improvements
+#entry[*IntBee* #link("https://github.com/regarager/intbee")[(code)] #tag[(Full-Stack)]][Fall 2025 – Spring 2026]
+- Built a full-stack TypeScript integration (calculus) contest platform with WebSocket matchmaking, JWT/Argon2 authentication, and role-based access control
+- Developed competition tooling: LaTeX-rendered problem banks, configurable leaderboards, and a tag-based markdown wiki
+
+#section("Competitions & Awards")
+
+#entry[*National Cyber League*][Fall 2025]
+- Placed 2nd individually out of 1,000+ high school participants in a nationwide cybersecurity capture-the-flag (CTF) competition
+- Placed 6th in the team round out of all high school teams
 
 #section("Experience")
 
@@ -73,21 +76,14 @@
 - Organized *LionHacks 2024 & 2025*, recruited judges, and grew event to *140+ participants*; coordinated cross-school logistics and finances for BISV Hacks 2025 & 2026
 - Presented weekly technical sessions on topics such as JavaScript, React, and Firebase; mentored club members on full-stack web development
 
-#section("Competitions & Awards")
-
-#entry[*National Cyber League*][Fall 2025]
-- Placed 2nd out of 1,000+ high school participants in a nationwide cybersecurity capture-the-flag (CTF) competition
-- Led team to a 6th-place finish among all high school teams
-
 #section("Skills")
 
 #grid(
   columns: (1fr, 1fr),
   column-gutter: 2em,
   row-gutter: 0.5em,
+  [*Cybersecurity:* Ghidra, Pwntools, GDB, Metasploit, Wireshark, Burp Suite, Nmap],
+  [*Infrastructure:*  Docker, Linux, Git, GitHub, Firebase, MongoDB],
   [*Software Development:* Python, Java, C++, HTML/CSS/JavaScript, TypeScript, Bash, Rust],
   [*Data Science:* PyTorch, Scikit-learn, Pandas, NumPy, OpenCV, Ultralytics YOLOv11, Jupyter Notebooks],
-
-  [*Cybersecurity:* Ghidra, GDB, Wireshark, Pwntools],
-  [*Infrastructure:* Firebase, Docker, MongoDB, Linux],
 )
