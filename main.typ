@@ -29,7 +29,7 @@
 #align(center)[
   #text(size: 19pt, weight: "bold")[Redger Xu]
 
-  #link("mailto:redgerxu@berkeley.edu")[redgerxu\@berkeley.edu] | #link("https://github.com/regarager")[github.com/regarager] | (408) 769-0763
+  #link("mailto:redgerxu@berkeley.edu")[redgerxu\@berkeley.edu] | #link("https://github.com/regarager")[github.com/regarager] | #link("https://redgerxu.dev")[redgerxu.dev]
 ]
 
 #section("Education")
