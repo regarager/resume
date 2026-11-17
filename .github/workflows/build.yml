@@ -48,3 +48,5 @@ jobs:
           name: Resume ${{ steps.release.outputs.tag }}
           files: dist/*.pdf
           generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
