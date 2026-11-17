@@ -2,12 +2,12 @@ name: Build Resume PDFs
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -29,9 +29,24 @@ jobs:
           typst compile main.typ dist/Redger_Xu_Resume.pdf
           typst compile main.typ "dist/Redger_Xu_Resume-$(date -u +%m-%d-%Y).pdf"
 
+      - name: Set release tag
+        id: release
+        run: echo "tag=v$(date -u +%Y.%m.%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdfs
           path: dist/*.pdf
           if-no-files-found: error
+
+      - name: Create release
+        if: github.event_name != 'pull_request'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.release.outputs.tag }}
+          name: Resume ${{ steps.release.outputs.tag }}
+          files: dist/*.pdf
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

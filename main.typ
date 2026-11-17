@@ -92,7 +92,7 @@
 
 #experience(
   title: "Cybersecurity Club, Stratford Preparatory",
-  subtitle: "Co-Captain",
+  subtitle: "Captain",
   date: start-end(start: "Fall 2024", end: "Spring 2026"),
 )[
   - Directed CTF team strategy, coordinated problem-solving during competitions, organized team practice sessions
