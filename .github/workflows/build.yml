@@ -4,8 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-  release:
-    types: [published]
   workflow_dispatch:
 
 permissions:
@@ -31,6 +29,10 @@ jobs:
           typst compile main.typ dist/Redger_Xu_Resume.pdf
           typst compile main.typ "dist/Redger_Xu_Resume-$(date -u +%m-%d-%Y).pdf"
 
+      - name: Set release tag
+        id: release
+        run: echo "tag=v$(date -u +%Y.%m.%d)-${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
         with:
@@ -38,9 +40,11 @@ jobs:
           path: dist/*.pdf
           if-no-files-found: error
 
-      - name: Upload PDFs to release
-        if: github.event_name == 'release'
+      - name: Create release
+        if: github.event_name != 'pull_request'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.release.tag_name }}
+          tag_name: ${{ steps.release.outputs.tag }}
+          name: Resume ${{ steps.release.outputs.tag }}
           files: dist/*.pdf
+          generate_release_notes: true
