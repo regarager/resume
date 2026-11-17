@@ -1,89 +1,123 @@
-#set document(title: "Redger Xu — Resume", author: "Redger Xu")
-#set page(paper: "us-letter", margin: (top: 0.5in, bottom: 0.5in, x: 0.6in))
-#set text(font: "New Computer Modern", size: 10pt, lang: "en")
-#set par(leading: 0.5em, spacing: 0.7em)
-#set list(indent: 0.75em, body-indent: 0.45em, tight: true)
-#set block(spacing: 0.65em)
+#import "src/resume.typ": *;
 
-#let section(title) = {
-  v(0.5em)
-  grid(
-    columns: (auto, 1fr),
-    column-gutter: 0.5em,
-    align: (left, bottom),
-    text(size: 11pt, weight: "bold")[#upper(title)],
-    line(length: 100%, stroke: 0.6pt + black),
-  )
-  v(0.2em)
-}
-
-#let entry(title, date) = grid(
-  columns: (1fr, auto),
-  column-gutter: 0.75em,
-  title, date,
+#show: resume.with(
+  name: "Redger Xu",
+  email: "redgerxu@berkeley.edu",
+  phone: "(408) 769-0763",
+  linkedin: "linkedin.com/in/redgerxu",
+  linkedin-url: "https://www.linkedin.com/in/redgerxu/",
+  github: "github.com/regarager",
+  github-url: "https://github.com/regarager",
+  website: "redgerxu.dev",
+  website-url: "https://redgerxu.dev",
 )
-
-#show link: set text(fill: rgb("#1d4ed8"))
-#let tag(body) = text(size: 8.5pt, fill: luma(110), style: "italic")[ #body]
-
-#align(center)[
-  #text(size: 19pt, weight: "bold")[Redger Xu]
-
-  #link("mailto:redgerxu@berkeley.edu")[redgerxu\@berkeley.edu] | #link("https://github.com/regarager")[github.com/regarager] | #link("https://redgerxu.dev")[redgerxu.dev]
-]
 
 #section("Education")
 
-#entry[*University of California, Berkeley* | B.S. Electrical Engineering & Computer Sciences][Class of 2030]
-- Current Coursework: Data Structures, Linear Algebra & Differential Equations
+#edu(
+  institution: "University of California, Berkeley",
+  degree: "B.S. Electrical Engineering & Computer Sciences",
+  gpa: "4.0",
+  // location: "Berkeley, CA",
+  date: start-end(start: "August 2026", end: "Expected May 2030"),
+  coursework: (
+    "Data Structures",
+    "Linear Algebra & Differential Equations",
+  ),
+  coursework-label: "Current Coursework",
+)
 
-#entry[*Stratford Preparatory Blackford* | High School Diploma (GPA: 4.87)][June 2026]
-- Relevant Coursework: AP Computer Science A, AP Calculus BC, AP Statistics, Cybersecurity, Full-Stack Development, AI: Models and Applications, Data Structures and Algorithms
+#edu(
+  institution: "Stratford Preparatory Blackford",
+  degree: "High School Diploma",
+  gpa: "4.87",
+  // location: "San Jose, CA",
+  date: start-end(start: "August 2022", end: "June 2026"),
+)
 
 #section("Projects")
 
-#entry[*ClashAI* #link("https://github.com/regarager/clash-ai")[(code)] #tag[(Reinforcement Learning + Computer Vision)]][Fall 2025 – Spring 2026]
-- Investigated real-time perception–action bottlenecks in game-playing RL agents; benchmarked ADB versus minicap screen-capture frameworks, reducing end-to-end latency from $approx 200$ ms to $approx 30$ ms while preserving YOLOv11 detection integrity
-- Implemented PPO with multi-head attention and action masking for legal move selection; engineered jitter-robust card recognition via dHash matching with Sobel edge detection and Otsu thresholding
-- Conducted ablation studies on latency-vs-accuracy trade-offs, identifying the capture pipeline as the primary bottleneck for real-time decision loops
+#project(
+  title: "ClashAI",
+  subtitle: "Reinforcement Learning + Computer Vision",
+  github: "https://github.com/regarager/clash-ai",
+  date: start-end(start: "Fall 2025", end: "Spring 2026"),
+)[
 
-#entry[*MaLO* | Contributor #tag[(LLMs in Cybersecurity)]][Summer 2025]
-- Integrated the OpenRouter API to enable benchmarking across multiple LLM models; controlled system prompt, temperature, and other key hyperparameters across models
-- Enforced reproducibility across different models using Docker and standardized challenge files
-- Created pipeline to run all tests automatically, removing manual per-run intervention and speeding up tests
+  - Built a mobile-game (Clash Royale) agent that captures Android emulator frames via ADB and converts them into game state information using OpenCV and YOLOv11; achieved 76% win rate
+  - Designed a hybrid PPO actor-critic policy with multi-head attention over learned card embeddings and action masking on invalid actions, outputting in a hybrid (discrete + continuous) action space
+  - Engineered a jitter-robust hand-card recognizer using Sobel/Otsu preprocessing and 4096-bit dHash matching with Hamming-distance tolerance
+]
 
-#entry[*Analysis of California Traffic Collisions* #tag[(Data Science + Forecasting)]][Summer 2024]
-- Engineered multi-class classification and time-series forecasting pipelines on 5M+ California Highway Patrol collision records to identify environmental, temporal, and vehicular risk factors
-- Designed a custom "lenient accuracy" metric to handle near-correct classifications; benchmarked Logistic Regression, SVM, and Random Forest
-- Built a time-series forecasting model using skforecast with lag optimization; formulated a causal hypothesis on Daylight Saving Time (DST) shifts, classifying post-DST periods vs. normal days with 71.4% accuracy
+#project(
+  title: "MaLO",
+  subtitle: "Contributor · LLMs in Cybersecurity",
+  date: "Summer 2025",
+)[
+  - Integrated the OpenRouter API to enable benchmarking across multiple LLM models; controlled system prompt, temperature, and other key hyperparameters across models
+  - Enforced reproducibility across different models using Docker and standardized challenge files
+  - Created pipeline to run all tests automatically, removing manual per-run intervention and speeding up tests
+]
 
-#entry[*IntBee* #link("https://github.com/regarager/intbee")[(code)] #tag[(Full-Stack)]][Fall 2025 – Spring 2026]
-- Built a full-stack TypeScript integration (calculus) contest platform with WebSocket matchmaking, JWT/Argon2 authentication, and role-based access control
-- Developed competition tooling: LaTeX-rendered problem banks, configurable leaderboards, and a tag-based markdown wiki
+#project(
+  title: "Analysis of California Traffic Collisions",
+  subtitle: "Data Science + Forecasting",
+  date: "Summer 2024",
+)[
+  - Engineered multi-class classification and time-series forecasting pipelines on 5M+ California Highway Patrol collision records to identify environmental, temporal, and vehicular risk factors
+  - Designed a custom "lenient accuracy" metric to handle near-correct classifications; benchmarked Logistic Regression, SVM, and Random Forest
+  - Built a time-series forecasting model using skforecast with lag optimization; formulated a causal hypothesis on Daylight Saving Time (DST) shifts, classifying post-DST periods vs. normal days with 71.4% accuracy
+]
 
-#section("Competitions & Awards")
-
-#entry[*National Cyber League*][Fall 2025]
-- Placed 2nd individually out of 1,000+ high school participants in a nationwide cybersecurity capture-the-flag (CTF) competition
-- Placed 6th in the team round out of all high school teams
+#project(
+  title: "IntBee",
+  subtitle: "Full-Stack",
+  github: "https://github.com/regarager/intbee",
+  date: start-end(start: "Fall 2025", end: "Spring 2026"),
+)[
+  - Built a full-stack integration (calculus) contest platform with TypeScript + HTMX, WebSocket-based live matches, JWT authentication, and MongoDB
+  - Developed competition tooling: question bank, strategy wiki, and live scoreboard; used it to host an integration contest in high school
+]
 
 #section("Experience")
 
-#entry[*Cybersecurity Club* | Co-Captain][Fall 2024 – Spring 2026]
-- Led team strategy across forensics, cryptography, and web exploitation at four national CTF competitions; mentored members toward category specialization
+#work(
+  title: "Undergraduate Researcher",
+  company: "ASTRA",
+  dates: "Fall 2026 – Present",
+  location: "UC Berkeley",
+)
+- Investigated subliminal learning in machine learning models, analyzing how fine-tuned traits can be transferred through distillation on unrelated outputs
+- Demonstrated transfer of the MNIST digit classifier to a student model training on only random noise; recovered 94.3% of the teacher's accuracy after training
 
-#entry[*Hackathon Club* | President][Fall 2023 – Spring 2026]
-- Organized *LionHacks 2024 & 2025*, recruited judges, and grew event to *140+ participants*; coordinated cross-school logistics and finances for BISV Hacks 2025 & 2026
-- Presented weekly technical sessions on topics such as JavaScript, React, and Firebase; mentored club members on full-stack web development
+#experience(
+  title: "Cybersecurity Club, Stratford Preparatory",
+  subtitle: "Co-Captain",
+  date: start-end(start: "Fall 2024", end: "Spring 2026"),
+)[
+  - Directed CTF team strategy, coordinated problem-solving during competitions, organized team practice sessions
+  - National Cyber League: Placed 2nd individually (1,000+ HS participants) & top 2% team (Fall 2025); top 3% individual (Spring 2025 & Fall 2024)
+  - PicoCTF 2025: Placed in the top 3% of all teams
+  // - Achieved the following placements:
+  //   - National Cyber League Fall 2025: 2nd place HS individual round, top 0.5% individual round, top 2% team round
+  //   - National Cyber League Spring 2025 top 4% individual round, top 2% team round
+  //   - National Cyber League Fall 2024: top 3% individual round, top 2% team round
+  //   - PicoCTF 2025: top 3% team round
+]
+
+#experience(
+  title: "Hackathon Club",
+  subtitle: "President",
+  date: start-end(start: "Fall 2023", end: "Spring 2026"),
+)[
+  - Organized LionHacks 2024 & 2025, recruited judges, and grew event to 140+ participants; coordinated cross-school logistics and finances for BISV Hacks 2025 & 2026
+  - Directed weekly technical sessions and mentored club members on full-stack web development
+]
 
 #section("Skills")
 
-#grid(
-  columns: (1fr, 1fr),
-  column-gutter: 2em,
-  row-gutter: 0.5em,
-  [*Cybersecurity:* Ghidra, Pwntools, GDB, Metasploit, Wireshark, Burp Suite, Nmap],
-  [*Infrastructure:*  Docker, Linux, Git, GitHub, Firebase, MongoDB],
-  [*Software Development:* Python, Java, C++, HTML/CSS/JavaScript, TypeScript, Bash, Rust],
-  [*Data Science:* PyTorch, Scikit-learn, Pandas, NumPy, OpenCV, Ultralytics YOLOv11, Jupyter Notebooks],
-)
+- *Languages:* Python, Java, C++, JavaScript, TypeScript, Bash, Rust
+- *Tools:* Docker, Linux, Git, GitHub, Firebase, MongoDB
+- *Cybersecurity:* Ghidra, pwntools, GDB, Metasploit, Wireshark, Burp Suite, Nmap
+- *Data Science:* PyTorch, scikit-learn, Pandas, NumPy, OpenCV
+
